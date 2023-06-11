@@ -7,6 +7,7 @@
 
 sentiment <- function(){
   
+  
   text <- getText()
   
   sentiment_scores <- get_sentiment_score(text)
@@ -28,10 +29,5 @@ sentiment <- function(){
 
 
 
-# Load a sentiment lexicon
-lexicon <- tidytext::get_sentiments("afinn")
-# Run
-
-#store <- sentiment()
 
 

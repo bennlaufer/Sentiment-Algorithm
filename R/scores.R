@@ -2,7 +2,6 @@
 #'
 #' @param text vector
 #'
-#'
 #' @return scores
 #' 
 #' @import tidytext
@@ -13,11 +12,16 @@
 #' @export
 
 get_sentiment_score <- function(text) {
+  
+  lexicon <- tidytext::get_sentiments("afinn")
+  
   tokens <- data.frame(text = text) %>%
-    tidytext::unnest_tokens(word, text)
+    
+  tidytext::unnest_tokens(word, text)
   
   scores <- tokens %>%
-    inner_join(lexicon, by = "word") %>%
+    inner_join(lexicon,
+               by = "word") %>%
     group_by(word) %>%
     summarise(sentiment_score = sum(value))
   
@@ -35,6 +39,8 @@ get_sentiment_score <- function(text) {
 #'
 #'
 #' @return counts
+#' 
+#' @export
 
 iterated_difference <- function(data) {
   
@@ -57,5 +63,7 @@ iterated_difference <- function(data) {
     counts <- c(counts, difference)
   }
 }
+
+
 
 
