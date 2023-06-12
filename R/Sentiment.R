@@ -1,12 +1,13 @@
 #' Sentiment function
 #'
 #' @return dataframe
-#'
+#' 
+#' @import dplyr
+#'  
 #' @export
 
 
 sentiment <- function(){
-  
   
   text <- getText()
   
@@ -15,7 +16,7 @@ sentiment <- function(){
   sentiment_labels <- ifelse(sentiment_scores$sentiment_score > 0, "Positive",
                              ifelse(sentiment_scores$sentiment_score < 0, "Negative", "Neutral"))
   
-  store <- data.frame(sentence = c(text[1], rep(NA, length(sentiment_labels) - 1)),
+  store <- data.frame(sentence = c(text[1], rep(NA, (length(sentiment_labels) - 1))),
                       sentiment_scores,
                       sentiment_labels)
   

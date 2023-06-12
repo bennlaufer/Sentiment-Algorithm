@@ -37,6 +37,7 @@ getText <- function(){
                      text)
   
   final_text <- fix_sentence(clean_text)
+  
   # returns clean_text
   return(final_text)
   
@@ -55,10 +56,13 @@ fix_sentence <- function(sentence) {
   
   #splits sentences into a bunch of single words
   words <- strsplit(sentence, "\\s+")
+  #unlists
   words_vector <- unlist(words)
   
   #applies vector of individual words to function
   fixed_words <- lapply(words_vector, check_word)
+  
+  #relists
   fixed_words_vector <- list(fixed_words)
   
   #puts the list of words back into a sentence

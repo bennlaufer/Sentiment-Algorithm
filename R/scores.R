@@ -8,6 +8,7 @@
 #' @import caret
 #' @import textdata
 #' @import tidyverse
+#' @import dplyr
 #' 
 #' @export
 
@@ -16,8 +17,7 @@ get_sentiment_score <- function(text) {
   lexicon <- tidytext::get_sentiments("afinn")
   
   tokens <- data.frame(text = text) %>%
-    
-  tidytext::unnest_tokens(word, text)
+    tidytext::unnest_tokens(word, text)
   
   scores <- tokens %>%
     inner_join(lexicon,
