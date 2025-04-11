@@ -1,50 +1,42 @@
-# 📊 Sentiment Analysis in R
+# Sentiment Algorithm (R)
 
-This R package provides a user-interactive sentiment analysis tool that processes freeform text, performs spelling correction, tokenizes the text, calculates sentiment scores using the AFINN lexicon, and assigns sentiment labels (Positive, Negative, Neutral) to each word.
+An interactive sentiment analysis package in R that lets users input text, automatically corrects spelling, scores sentiment using the AFINN lexicon, and returns a tidy dataframe with labeled sentiment results. Great for quick, conversational text sentiment scoring in an R environment.
 
-## Features
+## ✨ Key Features
 
-- Prompts users to enter any sentence or word input
-- Cleans and corrects misspelled words using the `spelling` package
-- Tokenizes text and applies sentiment scoring using the AFINN lexicon from `tidytext`
-- Iteratively calculates cumulative sentiment differences
-- Outputs a clean and labeled dataframe with sentiment results
+- 📥 **User input** via console — just type and go
+- 🧹 **Spelling correction** using the `spelling` package
+- 💬 **Sentiment scoring** via AFINN lexicon with `tidytext`
+- 📈 **Iterative score tracking** for progressive sentiment insights
+- 📊 **Clean output** with sentiment labels and scores in a dataframe
 
-## How It Works
+---
 
-1. **User Input**: Prompts the user to enter sentences. Input ends when "done" is typed.
-2. **Spell Correction**: Fixes repeated letters and minor typos.
-3. **Tokenization & Sentiment Scoring**: Text is broken into words, joined with AFINN lexicon, and sentiment scores are calculated.
-4. **Iteration**: An `iterated_score` column computes a running sentiment total.
-5. **Output**: Returns a tidy dataframe showing each word, sentiment label, score, and iterated score.
+## 🗂️ Package Structure
 
-## 📦 Functions Overview
+The package is composed of three main scripts:
 
-### `sentiment()`
+| Script        | Purpose                                                                 |
+|---------------|-------------------------------------------------------------------------|
+| `Sentiment.R` | Core function `sentiment()` to collect input and generate output        |
+| `scores.R`    | Functions for calculating sentiment scores and iterative difference     |
+| `textFix.R`   | Functions to clean and fix misspelled or noisy user input               |
 
-Main function that:
-- Collects and cleans user input
-- Applies sentiment scoring
-- Returns a labeled dataframe with the following columns:
-  - `sentence`
-  - `word`
-  - `sentiment_labels`
-  - `sentiment_score`
-  - `iterated_score`
+---
 
-### `get_sentiment_score(text)`
-Calculates sentiment scores for each word in the input text using AFINN.
+## 📦 Installation
 
-### `iterated_difference(data)`
-Computes a cumulative sentiment score difference across the words.
+Clone the repo and use `devtools` to install:
 
-### `getText()`
-Prompts user for sentence input and returns cleaned text.
+```r
+# if needed:
+install.packages("devtools")
 
-### `fix_sentence(sentence)` / `check_word(word)` / `fix_word()` / `letter_find()`
-Corrects spelling mistakes, particularly repeated letters (e.g., "goooat" → "goat").
+# install from local path
+devtools::install_local("path/to/your/sentimentR-package")
+```
 
-## 📚 Dependencies
+## Dependencies
 
 This package uses the following R libraries:
 
@@ -57,4 +49,6 @@ This package uses the following R libraries:
 
 Make sure these packages are installed before running the code.
 
+```r
 install.packages(c("dplyr", "tidyverse", "tidytext", "textdata", "caret", "spelling"))
+```
